@@ -40,7 +40,6 @@ class CompaniesController < ApplicationController
 
   def add_employee
     @company = Company.find(params[:company_id])
-    byebug
     Company.import(params[:file], params[:company_id])
     redirect_to @company
   end
