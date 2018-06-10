@@ -1,0 +1,72 @@
+<div class="container">
+	<p id="notice"><%= notice %></p>
+
+	<p>
+		<strong>Title:</strong>
+		<%= @company.title %>
+	</p>
+
+	<p>
+		<strong>Package:</strong>
+		<%= @company.package %>
+	</p>
+
+	<h3>Employees</h3>
+	
+	<table class='table table-striped'>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Number</th>
+				<th colspan="4">Actions</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<% @employees.each do |emp| %>
+			<tr>
+				<td><%= emp.name %></td>
+				<td><%= emp.number %></td>
+				<td>
+						<span class='label label-danger'>Destroy</span>
+						<!-- delete employee -->
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+	<%= link_to 'Edit', edit_company_path(@company) %> |
+	<%= link_to 'Back', companies_path %>
+	<button id='btn' class='btn btn-default' style="cursor: pointer;"> Upload Employe </button>
+
+	<div class="row">
+		<div classs="col-md-3 employee-div">
+			<h3>Upload Employee</h3>
+			<div class="quiz-form">
+				<%= form_tag add_employee_companies_path, multipart: true do %>
+				<%= file_field_tag :file, class:'btn btn-logout' %><br>
+				<%= hidden_field_tag :company_id, @company.id %>
+				<%= submit_tag "Import",class:'btn btn-default'%>
+				<% end %>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<script>
+	$(document).ready(function() {
+		$('#btn').click(function() {
+			alert('inside')
+			$('.quiz-form').show();
+		});
+	});
+
+</script>
+
+<style>
+	.quiz-form {
+		display: none;
+	}
+</style>

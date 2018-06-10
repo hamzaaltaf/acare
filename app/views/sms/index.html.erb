@@ -1,0 +1,38 @@
+
+<div class="">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Listing Sms</h1>
+  <table class='table table-striped'>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Company</th>
+        <th>Employee</th>
+        <th>Message</th>
+        <th colspan="3">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @sms.each do |sm| %>
+      <tr>
+        <td><%= sm.title %></td>
+        <td><%= Company.find(sm.to).title %></td>
+        <td><%= Company.find(sm.to).employees.count %></td>
+        <td width='50%'><%= sm.message.capitalize %></td>
+        <td>
+          <span><%= link_to 'Show', sm, class: 'label label-default'%></span>
+          <span><%= link_to 'Destroy', sm, method: :delete, data: { confirm: 'Are you sure?' }, class: 'label label-danger' %></span>
+        </td>  
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+<%= link_to 'New Sm', new_sm_path, class: 'btn btn-success' %>  
+</div>
+
+
+
+
